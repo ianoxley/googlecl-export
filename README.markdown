@@ -9,4 +9,4 @@ Options
 * -f  The format you want to export the documents in (default is pdf)
 * -d  The Google Docs folder of documents you want to export (default is all documents)
 
-GoogleCL can be downloaded from http://code.google.com/p/googlecl/
+GoogleCL can be downloaded from [http://code.google.com/p/googlecl/](http://code.google.com/p/googlecl/)
