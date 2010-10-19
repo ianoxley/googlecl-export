@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# Exports the specified folder in Google Docs to the specified
+# format
+
+# @author ijoxley [at] gmail [dot] com
+
+FORMAT=pdf
+FOLDER=
+
+function usage {
+	echo "usage: googlecl-export [[[-f format ] [-d directory]] | [-h]]"
+}
+
+function export {
+	list_cmd="google docs list --fields title"
+	if [ "$FOLDER" != "" ]; then
+		list_cmd="$list_cmd --folder $FOLDER"
+	fi
+	
+	for i in `$list_cmd`; 
+	do 
+		google docs get --format $FORMAT --title "$i"; 
+	done
+}
+
+function testcmd {
+	list_cmd="ls -l"
+	for i in `$list_cmd`;
+	do
+		echo "$i";
+	done
+}
+
+while [ "$1" != "" ]; do
+    case $1 in
+        -f | --format )         shift
+                                FORMAT=$1
+                                ;;
+        -d | --dir )    				shift
+																FOLDER=$1
+                                ;;
+        -h | --help )           usage
+                                exit
+                                ;;
+        * )                     usage
+                                exit 1
+    esac
+    shift
+done
+
+export
+
